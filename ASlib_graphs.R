@@ -10,13 +10,13 @@ library(readr)
 title <- c("asp_potassco", "csp-minizinc-time-2016", "graphs_2015", "maxsat-pms-2016", "openml_weka_2017", "proteus-2014", "sat11_indu")
 
 # CHANGE iii FROM 1 TO 7 FOR DIFFERENT SCENARIOS
-iii <- 1
+iii <- 7
 prefix <- paste(title[iii], "_", sep="")
-dfl <- read_csv(paste(write_folder_2, prefix, "_for_latent_curves.csv", sep=""))
+dfl <- read_csv(paste(write_folder_1, prefix, "_for_latent_curves.csv", sep=""))
 g1 <- ggplot(dfl, aes(Latent_Trait, value)) +  geom_smooth(aes(color=Algorithm), se = FALSE, method = "gam", formula = y ~s(x, bs="cs"))+  xlab("Problem difficulty") + ylab("Performance") + ggtitle(title[iii]) + theme_bw() + theme(legend.position = "none")
 g1
 
-latenttr <- read_csv(paste(write_folder_2, prefix, "_for_latent_trait_bars_strengths.csv", sep=""))
+latenttr <- read_csv(paste(write_folder_1, prefix, "_for_latent_trait_bars_strengths.csv", sep=""))
 dfl2 <- pivot_longer(latenttr, cols = 2:dim(latenttr)[2])
 colnames(dfl2)[2] <- "Algorithm"
 dfl2 <- dfl2[dfl2$value!=0, ]
@@ -24,7 +24,7 @@ dfl2$value <- 1
 dfl21 <- dfl2 %>% mutate(type = "Strengths")
 dfl21 %>% group_by(Algorithm) %>% summarize(proportion = n())
 
-latenttr <- read_csv(paste(write_folder_2, prefix, "_for_latent_trait_bars_weakness.csv", sep=""))
+latenttr <- read_csv(paste(write_folder_1, prefix, "_for_latent_trait_bars_weakness.csv", sep=""))
 dfl2 <- pivot_longer(latenttr, cols = 2:dim(latenttr)[2])
 colnames(dfl2)[2] <- "Algorithm"
 dfl2 <- dfl2[dfl2$value!=0, ]
