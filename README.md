@@ -3,3 +3,5 @@ R code for figures in paper titled "Comprehensive Algorithm Portfolio Evaluation
 
 
 The R package airt can be used for these computations. Please see https://sevvandi.github.io/airt/ for more details. 
+
+The datasets used in this paper were taken from https://github.com/coseal/aslib_data. 
